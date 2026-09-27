@@ -3,47 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nuestra Boda · 7 de noviembre</title>
-<meta name="description" content="Invitación animada en formato historias — 7 de noviembre de 2026">
+<title>Bárbara &amp; Josseph · 7 de noviembre</title>
+<meta name="description" content="Invitación al matrimonio de Bárbara y Josseph — 7 de noviembre de 2026, Calama">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Parisienne&family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Parisienne&family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style>
   :root {
-    color-scheme: dark;
-    --night: #14221c;
-    --moss: #20362c;
-    --gold: #d9b878;
-    --gold-soft: #b89a5e;
-    --ivory: #f3ebdf;
-    --rose: #d4a19b;
-    --muted: #a9b5a9;
+    color-scheme: light;
+    --paper: #f6f4ea;
+    --mist: #e4e9d8;
+    --sage: #c3cfae;
+    --moss: #7f9163;
+    --deep: #3b4631;
+    --muted: #6d775f;
+    --gold: #a88a4a;
+    --gold-soft: #cdb57c;
     --script: "Parisienne", "Snell Roundhand", "Apple Chancery", cursive;
     --caps: "Marcellus", "Trajan Pro", Georgia, serif;
     --serif: "Cormorant Garamond", "Garamond", Georgia, serif;
-    --dur: 7000ms;
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; margin: 0; }
   body {
-    background: #0c1511;
-    color: var(--ivory);
+    background: #d6ddc6;
+    color: var(--deep);
     font-family: var(--serif);
     display: grid;
     place-items: center;
     overflow: hidden;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    -webkit-user-select: none;
   }
 
-  /* ---------- frame ---------- */
+  /* ---------- marco de la historia ---------- */
   .stories {
     position: relative;
     width: 100%;
     height: 100%;
-    max-width: 100%;
     overflow: hidden;
-    background: radial-gradient(120% 80% at 50% 0%, var(--moss) 0%, var(--night) 60%, #0e1814 100%);
+    background:
+      radial-gradient(90% 55% at 50% 0%, #fbfaf3 0%, transparent 70%),
+      radial-gradient(80% 50% at 50% 100%, var(--sage) 0%, transparent 75%),
+      linear-gradient(180deg, var(--paper) 0%, var(--mist) 100%);
   }
   @media (min-width: 560px) {
     .stories {
@@ -51,200 +54,271 @@
       width: auto;
       aspect-ratio: 9 / 16;
       border-radius: 18px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      box-shadow: 0 30px 70px rgba(59,70,49,.28);
     }
   }
   canvas.petals { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 
   .bars {
-    position: absolute; z-index: 5; left: 12px; right: 12px;
+    position: absolute; z-index: 6; left: 12px; right: 12px;
     top: calc(10px + env(safe-area-inset-top, 0px));
     display: flex; gap: 4px;
   }
-  .bar { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(243,235,223,.28); overflow: hidden; }
-  .bar i { display: block; height: 100%; width: 0; background: var(--ivory); }
+  .bar { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(59,70,49,.18); overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--deep); }
   .bar.done i { width: 100%; }
-  .bar.active i { animation: fill var(--dur) linear forwards; }
+  .bar.active i { animation: fill 7s linear forwards; }
   .paused .bar.active i { animation-play-state: paused; }
   @keyframes fill { to { width: 100%; } }
 
   .head {
-    position: absolute; z-index: 5; left: 14px; right: 14px;
+    position: absolute; z-index: 6; left: 14px; right: 14px;
     top: calc(22px + env(safe-area-inset-top, 0px));
     display: flex; align-items: center; gap: 10px;
-    font-family: var(--caps); font-size: 12px; letter-spacing: .08em;
+    font-family: var(--caps); font-size: 12px; letter-spacing: .06em;
   }
   .avatar {
-    width: 32px; height: 32px; border-radius: 50%;
+    width: 34px; height: 34px; border-radius: 50%;
     display: grid; place-items: center;
     border: 1.5px solid var(--gold);
-    font-family: var(--script); font-size: 15px; color: var(--gold);
-    background: var(--night);
+    font-family: var(--script); font-size: 14px; color: var(--deep);
+    background: var(--paper);
   }
   .head small { color: var(--muted); letter-spacing: .04em; }
   .head .sp { flex: 1; }
   .head button {
-    background: none; border: 0; color: var(--ivory); padding: 6px;
-    font: inherit; cursor: pointer; opacity: .85;
+    background: none; border: 0; color: var(--deep); padding: 6px;
+    font: inherit; cursor: pointer; opacity: .8;
   }
-  .head button:focus-visible, .cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
 
-  .tap { position: absolute; top: 70px; bottom: 90px; z-index: 3; }
+  .tap { position: absolute; top: 70px; bottom: 0; z-index: 3; }
   .tap.prev { left: 0; width: 32%; }
   .tap.next { right: 0; width: 68%; }
 
-  /* ---------- slides ---------- */
+  /* ---------- historias ---------- */
   .slide {
     position: absolute; inset: 0; z-index: 2;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center;
-    padding: calc(80px + env(safe-area-inset-top, 0px)) 28px calc(60px + env(safe-area-inset-bottom, 0px));
+    padding: calc(78px + env(safe-area-inset-top, 0px)) 26px calc(48px + env(safe-area-inset-bottom, 0px));
     opacity: 0; visibility: hidden; pointer-events: none;
     transition: opacity .6s ease, visibility 0s linear .6s;
   }
   .slide.on { opacity: 1; visibility: visible; z-index: 4; transition: opacity .6s ease; }
-  .slide.on a, .slide.on button { pointer-events: auto; }
+  .slide.on a, .slide.on button, .slide.on .selectable { pointer-events: auto; }
   .slide.on .in { animation: rise 1.1s cubic-bezier(.2,.7,.2,1) both; }
-  .slide .in { opacity: 1; }
   .d1 { animation-delay: .25s !important; }
   .d2 { animation-delay: .6s !important; }
   .d3 { animation-delay: 1s !important; }
   .d4 { animation-delay: 1.4s !important; }
   .d5 { animation-delay: 1.8s !important; }
-  @keyframes rise { from { opacity: 0; transform: translateY(18px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+  .d6 { animation-delay: 2.4s !important; }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
 
-  .eyebrow { font-family: var(--caps); font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); }
-  .script { font-family: var(--script); font-weight: 400; color: var(--ivory); line-height: 1.05; margin: 0; }
-  .body { font-size: 20px; line-height: 1.45; max-width: 30ch; margin: 0; color: var(--ivory); }
-  .body em { color: var(--rose); }
-  .rule { width: 64px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 18px auto; border: 0; }
-  .stack { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .eyebrow { font-family: var(--caps); font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin: 0; }
+  .script { font-family: var(--script); font-weight: 400; color: var(--deep); line-height: 1.05; margin: 0; }
+  .body { font-size: 20px; line-height: 1.45; max-width: 30ch; margin: 0; }
+  .rule { width: 70px; height: 1px; border: 0; margin: 16px auto; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .stack { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .note { font-size: 17px; font-style: italic; color: var(--muted); max-width: 30ch; margin: 0; }
 
-  /* 1 — sobre */
-  .envelope { position: relative; width: 220px; height: 150px; margin-bottom: 34px; perspective: 700px; }
-  .env-back { position: absolute; inset: 0; z-index: 1; background: #e9dcc7; border-radius: 4px; }
-  .env-card {
-    position: absolute; left: 14px; right: 14px; top: 12px; height: 120px;
-    background: var(--ivory); border-radius: 3px;
-    display: grid; place-items: center;
-    font-family: var(--script); font-size: 30px; color: var(--night);
-    transform: translateY(0); z-index: 2;
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: var(--caps); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: #fdfcf6; background: var(--moss); text-decoration: none;
+    padding: 13px 22px; border-radius: 999px; border: 0; cursor: pointer;
+    box-shadow: 0 6px 16px rgba(127,145,99,.35);
   }
-  .env-front {
-    position: absolute; inset: 0; border-radius: 4px; z-index: 3;
+
+  /* ---------- 1 · sobre ---------- */
+  .envelope-wrap { position: relative; margin: 70px 0 34px; }
+  .envelope { position: relative; width: 264px; height: 178px; perspective: 900px; }
+  .envelope::after {
+    content: ""; position: absolute; left: 6%; right: 6%; bottom: -18px; height: 20px;
+    background: radial-gradient(closest-side, rgba(59,70,49,.3), transparent);
+  }
+  .env-back {
+    position: absolute; inset: 0; z-index: 1; border-radius: 5px;
+    background: linear-gradient(160deg, #b7c59f, #a8b88f);
+  }
+  .env-card {
+    position: absolute; left: 14px; right: 14px; top: 10px; height: 158px; z-index: 2;
+    background: #fdfcf6; border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(59,70,49,.2);
+    display: flex; flex-direction: column; align-items: center;
+    padding-top: 10px;
+  }
+  .env-card::before {
+    content: ""; position: absolute; inset: 6px; border: 1px solid var(--gold-soft); border-radius: 2px;
+  }
+  .env-card::after {
+    content: ""; position: absolute; inset: 10px; border: 1px solid rgba(168,138,74,.3); border-radius: 1px;
+  }
+  .mono { position: relative; width: 92px; height: 92px; display: grid; place-items: center; }
+  .mono svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .mono span { font-family: var(--script); font-size: 30px; color: var(--deep); position: relative; }
+  .cdate { font-family: var(--caps); font-size: 10px; letter-spacing: .3em; color: var(--gold); margin-top: 6px; }
+  .env-front { position: absolute; inset: 0; z-index: 3; border-radius: 5px; overflow: hidden; }
+  .env-front::before, .env-front::after, .env-front i { content: ""; position: absolute; inset: 0; }
+  .env-front::before { background: linear-gradient(90deg, #c9d5b5, #bccaa5); clip-path: polygon(0 0, 52% 54%, 0 100%); }
+  .env-front::after { background: linear-gradient(270deg, #c9d5b5, #bccaa5); clip-path: polygon(100% 0, 48% 54%, 100% 100%); }
+  .env-front i { background: linear-gradient(0deg, #c1ceaa, #d0dbbe); clip-path: polygon(0 100%, 50% 44%, 100% 100%); }
+  .env-front b {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 56%;
     background:
-      linear-gradient(to top right, #efe4d2 50%, transparent 50.5%) left bottom / 50% 100% no-repeat,
-      linear-gradient(to top left, #e5d6bd 50%, transparent 50.5%) right bottom / 50% 100% no-repeat;
+      linear-gradient(to top right, transparent calc(50% - .7px), rgba(168,138,74,.6) 50%, transparent calc(50% + .7px)) left / 50% 100% no-repeat,
+      linear-gradient(to top left, transparent calc(50% - .7px), rgba(168,138,74,.6) 50%, transparent calc(50% + .7px)) right / 50% 100% no-repeat;
   }
   .env-flap {
-    position: absolute; left: 0; right: 0; top: 0; height: 90px;
-    background: linear-gradient(to bottom, #d8c6a8, #cdb893);
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top center; z-index: 4;
+    position: absolute; left: 0; right: 0; top: 0; height: 104px; z-index: 4;
+    transform-origin: top center; transform-style: preserve-3d;
+  }
+  .flap-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .tri { position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+  .flap-out .tri { background: linear-gradient(180deg, #b0bf97, #c6d2b0); }
+  .flap-out .edge {
+    position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 50% 100%);
+    background:
+      linear-gradient(to bottom left, transparent calc(50% - .7px), rgba(168,138,74,.65) 50%, transparent calc(50% + .7px)) left / 50% 100% no-repeat,
+      linear-gradient(to bottom right, transparent calc(50% - .7px), rgba(168,138,74,.65) 50%, transparent calc(50% + .7px)) right / 50% 100% no-repeat;
+  }
+  .flap-in { transform: rotateX(180deg); }
+  .flap-in .tri {
+    background-color: #fbf9f0;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(168,138,74,.55) 1.2px, transparent 1.7px),
+      radial-gradient(ellipse 2.5px 5px at 72% 70%, rgba(127,145,99,.5) 90%, transparent);
+    background-size: 16px 16px;
   }
   .seal {
-    position: absolute; left: 50%; top: 74px; width: 40px; height: 40px; margin-left: -20px;
-    border-radius: 50%; background: #8e3b3b;
-    box-shadow: inset 0 0 0 3px #a54a48, 0 2px 4px rgba(0,0,0,.3);
-    display: grid; place-items: center; color: #f3d7c6; z-index: 5; font-family: var(--script); font-size: 18px;
+    position: absolute; left: 50%; top: 76px; width: 58px; height: 58px; margin-left: -29px;
+    filter: drop-shadow(0 3px 3px rgba(59,70,49,.35));
   }
-  .slide.on .env-flap { animation: flap 1.2s .9s ease-in-out forwards; }
-  .slide.on .seal { animation: sealgo .5s .6s ease-in forwards; }
-  .slide.on .env-card { animation: cardup 1.2s 1.8s cubic-bezier(.3,.8,.3,1) forwards; }
-  @keyframes flap { 49% { z-index: 4; } 50%, 100% { z-index: 0; } 100% { transform: rotateX(180deg); } }
-  @keyframes sealgo { to { transform: scale(1.4); opacity: 0; } }
-  @keyframes cardup { to { transform: translateY(-78px); } }
-  .hint { font-family: var(--caps); font-size: 11px; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; }
-  .hint::after { content: " →"; }
+  .seal svg { width: 100%; height: 100%; display: block; }
+  .sprig { position: absolute; width: 64px; height: 64px; top: 62px; left: 50%; }
+  .sprig.l { margin-left: -70px; }
+  .sprig.r { margin-left: 6px; transform: scaleX(-1); }
 
-  /* 2 — nombres */
-  .names { font-size: clamp(64px, 19vw, 92px); }
-  .names .amp { display: block; font-size: .55em; color: var(--gold); margin: -4px 0 -2px; }
-  .rings { width: 120px; height: 70px; margin-bottom: 18px; }
+  .slide.on .env-flap { animation: flap 1.3s 1.1s ease-in-out forwards; }
+  .slide.on .env-card { animation: cardup 1.3s 2.2s cubic-bezier(.3,.8,.3,1) forwards; }
+  @keyframes flap { 0% { transform: rotateX(0); z-index: 4; } 49% { z-index: 4; } 50% { z-index: 0; } 100% { transform: rotateX(180deg); z-index: 0; } }
+  @keyframes cardup { to { transform: translateY(-100px); } }
+  .hint { font-family: var(--caps); font-size: 11px; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; margin: 0; }
+
+  /* ---------- 2 · nombres ---------- */
+  .names { font-size: clamp(60px, 17vw, 84px); }
+  .names .amp { display: block; font-size: .5em; color: var(--gold); margin: -2px 0; }
+  .rings { width: 124px; height: 72px; margin-bottom: 14px; }
   .rings circle { fill: none; stroke: var(--gold); stroke-width: 2; stroke-dasharray: 190; stroke-dashoffset: 190; }
   .slide.on .rings circle { animation: draw 1.6s ease forwards; }
   .slide.on .rings circle + circle { animation-delay: .5s; }
   @keyframes draw { to { stroke-dashoffset: 0; } }
 
-  /* 3 — fecha */
-  .bigdate { font-family: var(--caps); display: flex; align-items: center; gap: 14px; font-size: 22px; letter-spacing: .15em; color: var(--muted); }
-  .bigdate b { font-family: var(--serif); font-weight: 400; font-size: 96px; letter-spacing: 0; color: var(--ivory); line-height: 1; }
-  .cal { display: grid; grid-template-columns: repeat(7, 34px); gap: 4px 6px; font-size: 15px; font-variant-numeric: tabular-nums; margin-top: 8px; }
-  .cal span { height: 30px; display: grid; place-items: center; position: relative; color: var(--ivory); opacity: .75; }
+  /* ---------- 3 · cordón de tres dobleces ---------- */
+  .cross { width: 22px; height: 30px; margin-bottom: 10px; }
+  .cross path { stroke: var(--gold); stroke-width: 1.6; fill: none; stroke-dasharray: 60; stroke-dashoffset: 60; }
+  .slide.on .cross path { animation: draw 1.2s .2s ease forwards; }
+  .braid { width: 100%; max-width: 300px; height: 70px; margin: 14px 0 8px; }
+  .braid path { fill: none; stroke-width: 3.2; stroke-linecap: round; stroke-dasharray: 700; stroke-dashoffset: 700; }
+  .slide.on .braid path { animation: draw 2.6s .9s ease forwards; }
+  .slide.on .braid path:nth-child(2) { animation-delay: 1.2s; }
+  .slide.on .braid path:nth-child(3) { animation-delay: 1.5s; }
+  .verse { font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1.3; max-width: 17ch; margin: 0 0 8px; text-wrap: balance; }
+  .cite { font-family: var(--caps); font-size: 12px; letter-spacing: .25em; color: var(--gold); text-transform: uppercase; margin: 0; }
+  .legend { display: flex; gap: 16px; font-family: var(--caps); font-size: 11px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+  .legend span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: var(--c); vertical-align: 1px; }
+
+  /* ---------- 4 · fecha ---------- */
+  .bigdate { font-family: var(--caps); display: flex; align-items: center; gap: 14px; font-size: 21px; letter-spacing: .15em; color: var(--muted); }
+  .bigdate b { font-family: var(--serif); font-weight: 400; font-size: 96px; letter-spacing: 0; color: var(--deep); line-height: 1; }
+  .cal { display: grid; grid-template-columns: repeat(7, 34px); gap: 4px 6px; font-size: 16px; font-variant-numeric: tabular-nums; margin-top: 10px; }
+  .cal span { height: 30px; display: grid; place-items: center; position: relative; color: var(--deep); opacity: .7; isolation: isolate; }
   .cal .dow { font-family: var(--caps); font-size: 10px; color: var(--gold); opacity: 1; letter-spacing: .1em; }
-  .cal .day7 { opacity: 1; color: var(--night); font-weight: 500; }
-  .cal .day7::before {
-    content: ""; position: absolute; inset: -1px 1px; border-radius: 50%; background: var(--gold); z-index: -1;
-    transform: scale(0);
-  }
+  .cal .day7 { opacity: 1; color: #fdfcf6; font-weight: 600; }
+  .cal .day7::before { content: ""; position: absolute; inset: -1px 1px; border-radius: 50%; background: var(--moss); z-index: -1; transform: scale(0); }
   .slide.on .cal .day7::before { animation: pop .6s 1.6s cubic-bezier(.3,1.6,.5,1) forwards; }
-  .cal .day7::after {
-    content: "♥"; position: absolute; top: -12px; right: -8px; font-size: 13px; color: var(--rose); opacity: 0;
-  }
+  .cal .day7::after { content: "♥"; position: absolute; top: -12px; right: -8px; font-size: 13px; color: #c99a8c; opacity: 0; }
   .slide.on .cal .day7::after { animation: heart 1s 2.1s ease forwards; }
   @keyframes pop { to { transform: scale(1); } }
   @keyframes heart { 0% { opacity: 0; transform: translateY(6px) scale(.4); } 60% { opacity: 1; transform: translateY(-3px) scale(1.25); } 100% { opacity: 1; transform: none; } }
-  .cal .day7 { isolation: isolate; }
 
-  /* 4 — cuenta regresiva */
-  .count { display: grid; grid-template-columns: repeat(4, auto); gap: 6px 18px; margin-top: 6px; }
+  /* ---------- 5 · cuenta regresiva ---------- */
+  .count { display: grid; grid-template-columns: repeat(4, auto); gap: 6px 18px; margin-top: 8px; }
   .count div { display: flex; flex-direction: column; align-items: center; }
-  .count b { font-family: var(--serif); font-weight: 400; font-size: 52px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .count b { font-family: var(--serif); font-weight: 500; font-size: 52px; line-height: 1; font-variant-numeric: tabular-nums; }
   .count small { font-family: var(--caps); font-size: 10px; letter-spacing: .2em; color: var(--gold); text-transform: uppercase; margin-top: 6px; }
 
-  /* 5 — lugares */
-  .places { display: flex; flex-direction: column; gap: 22px; width: 100%; max-width: 320px; }
-  .place { border: 1px solid rgba(217,184,120,.35); border-radius: 14px; padding: 18px 16px; background: rgba(20,34,28,.55); backdrop-filter: blur(4px); }
-  .place h3 { font-family: var(--script); font-weight: 400; font-size: 34px; margin: 0 0 4px; color: var(--gold); }
-  .place .time { font-family: var(--caps); letter-spacing: .2em; font-size: 14px; }
-  .place p { margin: 6px 0 10px; font-size: 18px; line-height: 1.35; }
-  .cta {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    font-family: var(--caps); font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--night); background: var(--gold); text-decoration: none;
-    padding: 12px 20px; border-radius: 999px; border: 0; cursor: pointer;
-    position: relative; z-index: 4;
+  /* ---------- tarjetas ---------- */
+  .card {
+    width: 100%; max-width: 330px;
+    border: 1px solid rgba(168,138,74,.45); border-radius: 16px;
+    padding: 20px 18px;
+    background: rgba(253,252,246,.75); backdrop-filter: blur(4px);
+    box-shadow: 0 10px 30px rgba(59,70,49,.1);
   }
-  .cta.ghost { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 8px 14px; font-size: 11px; }
+  .card h3 { font-family: var(--script); font-weight: 400; font-size: 36px; margin: 0 0 6px; color: var(--moss); line-height: 1.1; }
+  .time { font-family: var(--caps); letter-spacing: .2em; font-size: 15px; }
+  .card p { margin: 8px 0 14px; font-size: 20px; line-height: 1.35; }
+  .card p small { display: block; font-size: 16px; color: var(--muted); }
 
-  /* 6 — dress code */
-  .swatches { display: flex; gap: 10px; margin-top: 6px; }
-  .swatches span { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(243,235,223,.3); }
-  .slide.on .swatches span { animation: rise .8s both; }
-  .slide.on .swatches span:nth-child(2) { animation-delay: 1.6s; }
-  .slide.on .swatches span:nth-child(3) { animation-delay: 1.75s; }
-  .slide.on .swatches span:nth-child(4) { animation-delay: 1.9s; }
-  .slide.on .swatches span:nth-child(1) { animation-delay: 1.45s; }
-  .note { font-size: 16px; font-style: italic; color: var(--muted); max-width: 28ch; }
+  /* ---------- 7 · dress code ---------- */
+  .swatches { display: flex; gap: 10px; justify-content: center; margin: 12px 0 16px; }
+  .swatches span { width: 30px; height: 30px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(59,70,49,.15); }
+  .pool {
+    width: 100%; max-width: 330px; border-radius: 16px; padding: 16px 16px 22px;
+    background: linear-gradient(180deg, #e6f0ef, #d0e4e4);
+    color: #2f4a4f; position: relative; overflow: hidden;
+  }
+  .pool strong { font-family: var(--caps); font-weight: 400; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; display: block; }
+  .pool p { margin: 6px 0 0; font-size: 18px; line-height: 1.35; position: relative; z-index: 1; }
+  .pool svg { position: absolute; left: 0; bottom: 0; width: 200%; height: 22px; opacity: .55; }
+  .slide.on .pool svg { animation: wave 5s linear infinite; }
+  @keyframes wave { to { transform: translateX(-50%); } }
 
-  /* 7 — confirmar */
-  .final .script.big { font-size: 58px; }
-  .reply-by { font-family: var(--caps); letter-spacing: .2em; font-size: 13px; color: var(--gold); }
-  .replay { margin-top: 10px; background: none; border: 0; color: var(--muted); font: italic 16px var(--serif); cursor: pointer; position: relative; z-index: 4; text-decoration: underline; text-underline-offset: 4px; }
+  /* ---------- 8 · regalos ---------- */
+  .bank { user-select: text; -webkit-user-select: text; text-align: left; max-width: 320px; padding: 16px; }
+  .bank dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0 0 14px; font-size: 17px; }
+  .bank dt { font-family: var(--caps); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); align-self: center; }
+  .bank dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .bank .cta { width: 100%; }
+  .copied:empty { display: none; }
+  .copied { font-size: 15px; color: var(--moss); min-height: 1.2em; margin: 8px 0 0 !important; text-align: center; }
+
+  /* ---------- 9 · confirmar ---------- */
+  .final .script.big { font-size: 54px; }
+  .phone { font-family: var(--caps); letter-spacing: .12em; font-size: 13px; color: var(--muted); user-select: text; -webkit-user-select: text; }
+  .replay { background: none; border: 0; color: var(--muted); font: italic 17px var(--serif); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
 
   .footer-hint {
     position: absolute; z-index: 5; left: 0; right: 0; bottom: calc(18px + env(safe-area-inset-bottom, 0px));
-    text-align: center; font-family: var(--caps); font-size: 10px; letter-spacing: .25em; color: rgba(243,235,223,.45); text-transform: uppercase;
+    text-align: center; font-family: var(--caps); font-size: 10px; letter-spacing: .25em; color: rgba(59,70,49,.5); text-transform: uppercase;
     pointer-events: none;
   }
 
+  @media (max-height: 700px) {
+    .slide { padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
+    .envelope-wrap { margin-top: 56px; }
+    .bigdate b { font-size: 76px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .slide.on .in, .slide.on .swatches span { animation: none; }
-    .slide.on .env-flap, .slide.on .seal, .slide.on .env-card, .slide.on .rings circle,
+    .slide.on .in { animation: none; }
+    .slide.on .env-flap, .slide.on .env-card, .slide.on .rings circle, .slide.on .braid path, .slide.on .cross path,
     .slide.on .cal .day7::before, .slide.on .cal .day7::after { animation-duration: .01s; animation-delay: 0s; }
+    .slide.on .pool svg { animation: none; }
   }
 </style>
 </head>
 <body>
 
-<main class="stories" id="stories" aria-roledescription="historias" aria-label="Invitación de boda">
+<main class="stories" id="stories" aria-roledescription="historias" aria-label="Invitación al matrimonio de Bárbara y Josseph">
   <canvas class="petals" id="petals" aria-hidden="true"></canvas>
-
   <div class="bars" id="bars" aria-hidden="true"></div>
 
   <div class="head">
-    <div class="avatar" id="initials">S&amp;M</div>
-    <div><span id="handle">sofia.y.mateo</span> <small id="ago">· ahora</small></div>
+    <div class="avatar">B&amp;J</div>
+    <div>barbara.y.josseph <small>· ahora</small></div>
     <div class="sp"></div>
     <button type="button" id="pauseBtn" aria-label="Pausar">❚❚</button>
   </div>
@@ -253,156 +327,228 @@
   <div class="tap next" id="tapNext" aria-hidden="true"></div>
 
   <!-- 1 · Sobre -->
-  <section class="slide" aria-label="Portada">
-    <div class="envelope in">
-      <div class="env-back"></div>
-      <div class="env-card" data-f="initials">S&amp;M</div>
-      <div class="env-front"></div>
-      <div class="env-flap"></div>
-      <div class="seal">♥</div>
+  <section class="slide" aria-label="Portada" data-dur="8000">
+    <div class="envelope-wrap in">
+      <div class="envelope">
+        <div class="env-back"></div>
+        <div class="env-card">
+          <div class="mono"><svg viewBox="0 0 92 92" id="wreath" aria-hidden="true"></svg><span>B&amp;J</span></div>
+          <div class="cdate">07 · 11 · 2026</div>
+        </div>
+        <div class="env-front"><i></i><b></b></div>
+        <div class="env-flap">
+          <div class="flap-face flap-in"><div class="tri"></div></div>
+          <div class="flap-face flap-out">
+            <div class="tri"></div><div class="edge"></div>
+            <svg class="sprig l" viewBox="0 0 70 70" aria-hidden="true" data-sprig></svg>
+            <svg class="sprig r" viewBox="0 0 70 70" aria-hidden="true" data-sprig></svg>
+            <div class="seal">
+              <svg viewBox="0 0 60 60" aria-hidden="true">
+                <defs>
+                  <radialGradient id="wax" cx="40%" cy="35%" r="70%">
+                    <stop offset="0" stop-color="#e2cb93"/>
+                    <stop offset=".55" stop-color="#c4a25e"/>
+                    <stop offset="1" stop-color="#9c7f40"/>
+                  </radialGradient>
+                </defs>
+                <path fill="url(#wax)" d="M30 2c5 0 7 3 11 4s8 2 10 6 1 7 3 11 3 7 2 11-4 6-5 10-3 8-7 10-8 1-12 2-7 2-11 0-5-5-9-7-7-4-9-8 0-8-1-12-2-7 0-11 6-5 9-8 5-5 9-6 5-2 9-2z"/>
+                <circle cx="30" cy="30" r="17" fill="none" stroke="#8f7338" stroke-width="1.2" opacity=".7"/>
+                <circle cx="30" cy="30" r="14.5" fill="none" stroke="#f0dfb3" stroke-width=".6" opacity=".6"/>
+                <text x="30" y="35.5" text-anchor="middle" font-family="Parisienne, cursive" font-size="15" fill="#7c632e">B&amp;J</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="stack">
-      <p class="eyebrow in d3">Tenemos una noticia</p>
-      <p class="body in d4">Guardamos algo muy especial para vos</p>
-      <p class="hint in d5">Tocá para abrir</p>
+      <p class="eyebrow in d4">Con la bendición de Dios</p>
+      <p class="body in d5">Tenemos algo muy especial que contarte</p>
+      <p class="hint in d6">Toca para abrir →</p>
     </div>
   </section>
 
   <!-- 2 · Nombres -->
   <section class="slide" aria-label="Los novios">
-    <svg class="rings in" viewBox="0 0 120 70" aria-hidden="true">
-      <circle cx="45" cy="35" r="28"></circle>
-      <circle cx="75" cy="35" r="28"></circle>
+    <svg class="rings in" viewBox="0 0 124 72" aria-hidden="true">
+      <circle cx="47" cy="36" r="28"></circle>
+      <circle cx="77" cy="36" r="28"></circle>
     </svg>
     <p class="eyebrow in d1">¡Nos casamos!</p>
-    <h1 class="script names in d2"><span data-f="name1">Sofía</span><span class="amp">&amp;</span><span data-f="name2">Mateo</span></h1>
+    <h1 class="script names in d2">Bárbara<span class="amp">&amp;</span>Josseph</h1>
     <hr class="rule in d3">
-    <p class="body in d4">Con la bendición de nuestras familias, queremos compartir con vos el día más feliz de nuestras vidas.</p>
+    <p class="body in d4">Con la bendición de Dios y de nuestras familias, queremos compartir contigo el día en que uniremos nuestras vidas.</p>
   </section>
 
-  <!-- 3 · Fecha -->
+  <!-- 3 · Versículo -->
+  <section class="slide" aria-label="Versículo" data-dur="8000">
+    <svg class="cross" viewBox="0 0 22 30" aria-hidden="true"><path d="M11 1v28M3 9h16"/></svg>
+    <p class="verse in d1">“Cordón de tres dobleces no se rompe pronto.”</p>
+    <p class="cite in d2">Eclesiastés 4:12</p>
+    <svg class="braid" id="braid" viewBox="0 0 300 70" aria-hidden="true"></svg>
+    <div class="legend in d4">
+      <span style="--c: #a88a4a">Dios</span>
+      <span style="--c: #d2a79a">Bárbara</span>
+      <span style="--c: #7f9163">Josseph</span>
+    </div>
+    <hr class="rule in d5">
+    <p class="note in d5">Dios en el centro de nuestro hogar, uniéndonos para siempre.</p>
+  </section>
+
+  <!-- 4 · Fecha -->
   <section class="slide" aria-label="Fecha">
-    <p class="eyebrow in">Guardá la fecha</p>
+    <p class="eyebrow in">Guarda la fecha</p>
     <div class="bigdate in d1"><span>Sáb</span><b>07</b><span>Nov</span></div>
     <p class="eyebrow in d1" style="color:var(--muted)">2026</p>
     <div class="cal in d2" id="cal" aria-label="Calendario de noviembre de 2026, marcado el sábado 7"></div>
   </section>
 
-  <!-- 4 · Cuenta regresiva -->
-  <section class="slide" aria-label="Cuenta regresiva">
+  <!-- 5 · Cuenta regresiva -->
+  <section class="slide" aria-label="Cuenta regresiva" data-dur="8000">
     <p class="eyebrow in">Faltan</p>
-    <div class="count in d1" id="count" aria-live="off">
+    <div class="count in d1" id="count">
       <div><b data-u="d">0</b><small>días</small></div>
-      <div><b data-u="h">0</b><small>horas</small></div>
-      <div><b data-u="m">0</b><small>min</small></div>
-      <div><b data-u="s">0</b><small>seg</small></div>
+      <div><b data-u="h">00</b><small>horas</small></div>
+      <div><b data-u="m">00</b><small>min</small></div>
+      <div><b data-u="s">00</b><small>seg</small></div>
     </div>
     <hr class="rule in d2">
     <p class="script in d3" style="font-size:44px">para el gran día</p>
+    <p class="note in d4" style="margin-top:14px">“Este es el día que hizo el Señor; nos gozaremos y alegraremos en él.”<br>Salmo 118:24</p>
   </section>
 
-  <!-- 5 · Ceremonia y fiesta -->
-  <section class="slide" aria-label="Ceremonia y fiesta">
+  <!-- 6 · Dónde y cuándo -->
+  <section class="slide" aria-label="Dónde y cuándo">
     <p class="eyebrow in">Dónde y cuándo</p>
-    <div class="places">
-      <article class="place in d1">
-        <h3>Ceremonia</h3>
-        <div class="time" data-f="ceremonyTime">17:00 h</div>
-        <p data-f="ceremonyPlace">Parroquia San José<br>Av. Siempreviva 742</p>
-        <a class="cta ghost" data-href="ceremonyMap" href="#" target="_blank" rel="noopener">Ver mapa</a>
-      </article>
-      <article class="place in d2">
-        <h3>Fiesta</h3>
-        <div class="time" data-f="partyTime">20:00 h</div>
-        <p data-f="partyPlace">Salón Los Jazmines<br>Camino Real 1234</p>
-        <a class="cta ghost" data-href="partyMap" href="#" target="_blank" rel="noopener">Ver mapa</a>
-      </article>
+    <hr class="rule in">
+    <article class="card in d1">
+      <h3>Ceremonia y celebración</h3>
+      <div class="time">13:00 a 19:00 h</div>
+      <p>Centro de Eventos Inti Pukará<small>Vegas de Saislao, sitio 61-7 · Calama</small></p>
+      <a class="cta" href="https://maps.app.goo.gl/jf8qwjMjAnmr9Fso9" target="_blank" rel="noopener">Cómo llegar</a>
+    </article>
+    <p class="note in d3" style="margin-top:16px">La ceremonia y la celebración serán en el mismo lugar.</p>
+  </section>
+
+  <!-- 7 · Dress code -->
+  <section class="slide" aria-label="Código de vestimenta" data-dur="9000">
+    <p class="eyebrow in">Dress code</p>
+    <h2 class="script in d1" style="font-size:52px">Semi formal</h2>
+    <p class="body in d2" style="font-size:18px">Te recomendamos tonos tierra y pasteles.</p>
+    <div class="swatches in d2">
+      <span style="background:#c3cfae"></span>
+      <span style="background:#e6cfc4"></span>
+      <span style="background:#e9dcc0"></span>
+      <span style="background:#b99372"></span>
+      <span style="background:#8c6d55"></span>
+    </div>
+    <div class="pool in d3">
+      <strong>¡Hay piscina!</strong>
+      <p>Trae tu traje de baño y gorro de piscina.</p>
+      <svg viewBox="0 0 400 22" preserveAspectRatio="none" aria-hidden="true"><path fill="#8fc0c7" d="M0 11 Q25 1 50 11 T100 11 T150 11 T200 11 T250 11 T300 11 T350 11 T400 11 V22 H0Z"/></svg>
+    </div>
+    <p class="note in d4" style="margin-top:14px">El blanco es para la novia ♡</p>
+  </section>
+
+  <!-- 8 · Regalos -->
+  <section class="slide" aria-label="Regalos" data-dur="15000">
+    <p class="eyebrow in">Regalos</p>
+    <h2 class="script in d1" style="font-size:40px">Luna de miel en familia</h2>
+    <p class="body in d2" style="font-size:17px; max-width:32ch; margin:8px 0 14px">Gracias a Dios ya tenemos nuestra casita con todo lo necesario, así que no recibiremos regalos físicos. Si quieres bendecirnos, estamos juntando para nuestra luna de miel en familia.</p>
+    <div class="card bank in d3 selectable">
+      <dl id="bankData">
+        <dt>Nombre</dt><dd>Bárbara Collado Araya</dd>
+        <dt>RUT</dt><dd>20.737.318-4</dd>
+        <dt>Banco</dt><dd>Coopeuch</dd>
+        <dt>Cuenta</dt><dd>Cuenta Vista</dd>
+        <dt>N°</dt><dd>201200324</dd>
+        <dt>Correo</dt><dd>bcollado0323@gmail.com</dd>
+      </dl>
+      <button type="button" class="cta" id="copyBank">Copiar datos</button>
+      <p class="copied" id="copied" aria-live="polite"></p>
     </div>
   </section>
 
-  <!-- 6 · Dress code -->
-  <section class="slide" aria-label="Código de vestimenta">
-    <p class="eyebrow in">Dress code</p>
-    <h2 class="script in d1" style="font-size:56px" data-f="dressCode">Elegante</h2>
-    <p class="body in d2" data-f="dressNote">Te sugerimos tonos tierra, verdes y dorados.</p>
-    <div class="swatches" id="swatches"></div>
-    <hr class="rule in d4">
-    <p class="note in d5">El blanco se lo dejamos a la novia ♡</p>
-  </section>
-
-  <!-- 7 · Confirmar -->
-  <section class="slide final" aria-label="Confirmar asistencia">
-    <p class="eyebrow in">Tu presencia es nuestro mejor regalo</p>
-    <h2 class="script big in d1">¿Venís?</h2>
-    <p class="reply-by in d2">Confirmá antes del <span data-f="rsvpBy">15 de octubre</span></p>
+  <!-- 9 · Confirmar -->
+  <section class="slide final" aria-label="Confirmar asistencia" data-dur="9000">
+    <p class="eyebrow in">Tu presencia es nuestra mayor alegría</p>
+    <h2 class="script big in d1">¿Nos acompañas?</h2>
     <hr class="rule in d2">
     <div class="stack in d3">
-      <a class="cta" id="rsvp" href="#" target="_blank" rel="noopener">Confirmar asistencia</a>
+      <a class="cta" id="rsvp" href="https://wa.me/56946308280" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+      <span class="phone selectable">Bárbara · +56 9 4630 8280</span>
       <button class="replay" type="button" id="replay">Ver de nuevo</button>
     </div>
+    <p class="note in d4" style="margin-top:18px">¡Te esperamos para celebrar juntos lo que Dios ha hecho en nuestras vidas!</p>
   </section>
 
-  <div class="footer-hint" id="fhint">Tocá a la derecha para avanzar</div>
+  <div class="footer-hint" id="fhint">Toca a la derecha para avanzar</div>
 </main>
 
 <script>
-/* ============================================================
-   EDITÁ ACÁ TUS DATOS
-   ============================================================ */
-const CONFIG = {
-  name1: "Sofía",
-  name2: "Mateo",
-  handle: "sofia.y.mateo",
-  weddingDate: "2026-11-07T17:00:00",     // fecha y hora de la ceremonia
-  ceremonyTime: "17:00 h",
-  ceremonyPlace: "Parroquia San José<br>Av. Siempreviva 742",
-  ceremonyMap: "https://maps.google.com/?q=Parroquia+San+Jose",
-  partyTime: "20:00 h",
-  partyPlace: "Salón Los Jazmines<br>Camino Real 1234",
-  partyMap: "https://maps.google.com/?q=Salon+Los+Jazmines",
-  dressCode: "Elegante",
-  dressNote: "Te sugerimos tonos tierra, verdes y dorados.",
-  dressColors: ["#6b7f5a", "#b98b5e", "#d9b878", "#7a4a45"],
-  rsvpBy: "15 de octubre",
-  whatsapp: "5491100000000",              // número con código de país, sin + ni espacios
-  rsvpMessage: "¡Hola! Confirmo mi asistencia a la boda del 7 de noviembre 💍"
-};
-/* ============================================================ */
-
 (() => {
+  const WEDDING = new Date("2026-11-07T13:00:00-03:00").getTime();
+  const WHATSAPP = "56946308280";
+  const RSVP_MSG = "¡Hola Bárbara! Confirmo mi asistencia a su matrimonio el sábado 7 de noviembre 🤍";
+
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const root = $("#stories");
   const slides = $$(".slide");
-  const DUR = 7000;
-  const initials = CONFIG.name1[0] + "&" + CONFIG.name2[0];
 
-  // fill content
-  $$("[data-f]").forEach(el => {
-    const k = el.dataset.f;
-    if (k === "initials") el.textContent = initials;
-    else if (CONFIG[k] != null) el.innerHTML = CONFIG[k];
+  $("#rsvp").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(RSVP_MSG);
+
+  // hojas (ramitas del sobre y corona del monograma)
+  const leaf = (x, y, rot, len, fill) =>
+    `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${(len * .3).toFixed(1)}" ry="${(len / 2).toFixed(1)}" transform="rotate(${rot.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" fill="${fill}"/>`;
+  $$("[data-sprig]").forEach(svg => {
+    let s = `<path d="M6 62 Q28 44 64 14" stroke="#6c7d52" stroke-width="1.3" fill="none"/>`;
+    [[14, 55], [22, 48], [30, 42], [38, 35], [46, 28], [54, 21]].forEach(([x, y], i) => {
+      const len = 13 - i * 1.2;
+      s += leaf(x - 4, y - 6, -10, len, i % 2 ? "#8fa274" : "#7a8f5f");
+      s += leaf(x + 5, y + 4, 80, len, i % 2 ? "#a0b287" : "#8a9d6d");
+    });
+    s += leaf(64, 12, 40, 9, "#8fa274");
+    svg.innerHTML = s;
   });
-  $$("[data-href]").forEach(el => { el.href = CONFIG[el.dataset.href]; });
-  $("#initials").textContent = initials;
-  $("#handle").textContent = CONFIG.handle;
-  $("#rsvp").href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.rsvpMessage);
-  document.title = CONFIG.name1 + " & " + CONFIG.name2 + " · 7 de noviembre";
-  $("#swatches").innerHTML = CONFIG.dressColors.map(c => `<span style="background:${c}"></span>`).join("");
+  (() => {
+    let s = `<circle cx="46" cy="46" r="34" fill="none" stroke="#a88a4a" stroke-width=".6" opacity=".45"/>`;
+    const arc = (from, to) => {
+      for (let i = 0; i < 8; i++) {
+        const t = from + (to - from) * i / 7;
+        const a = t * Math.PI / 180;
+        s += leaf(46 + 38 * Math.cos(a), 46 + 38 * Math.sin(a), t + (to > from ? 20 : -20), 10 - i * .4, i % 2 ? "#9db083" : "#7e9463");
+      }
+    };
+    arc(115, 245);   // lado izquierdo
+    arc(65, -65);    // lado derecho
+    $("#wreath").innerHTML = s;
+  })();
 
-  // calendar Nov 2026 (starts on Sunday)
-  const dows = ["D", "L", "M", "M", "J", "V", "S"];
+  // cordón de tres dobleces
+  (() => {
+    const colors = ["#a88a4a", "#d2a79a", "#7f9163"];
+    $("#braid").innerHTML = colors.map((c, k) => {
+      let d = "";
+      for (let x = 4; x <= 296; x += 4) {
+        const y = 35 + Math.sin(x / 300 * Math.PI * 6 + k * 2 * Math.PI / 3) * 20;
+        d += (x > 4 ? "L" : "M") + x + " " + y.toFixed(1);
+      }
+      return `<path d="${d}" stroke="${c}"/>`;
+    }).join("");
+  })();
+
+  // calendario noviembre 2026
   const first = new Date(2026, 10, 1).getDay();
-  let cal = dows.map(d => `<span class="dow">${d}</span>`).join("");
+  let cal = ["D", "L", "M", "M", "J", "V", "S"].map(d => `<span class="dow">${d}</span>`).join("");
   for (let i = 0; i < first; i++) cal += "<span></span>";
   for (let d = 1; d <= 30; d++) cal += `<span${d === 7 ? ' class="day7"' : ""}>${d}</span>`;
   $("#cal").innerHTML = cal;
 
-  // countdown
-  const target = new Date(CONFIG.weddingDate).getTime();
+  // cuenta regresiva
   const units = Object.fromEntries($$("#count b").map(b => [b.dataset.u, b]));
   function tick() {
-    let s = Math.max(0, Math.floor((target - Date.now()) / 1000));
+    let s = Math.max(0, Math.floor((WEDDING - Date.now()) / 1000));
     const d = Math.floor(s / 86400); s %= 86400;
     const h = Math.floor(s / 3600); s %= 3600;
     const m = Math.floor(s / 60); s %= 60;
@@ -413,11 +559,13 @@ const CONFIG = {
   }
   tick(); setInterval(tick, 1000);
 
-  // stories engine
+  // motor de historias
   const bars = $("#bars");
   bars.innerHTML = slides.map(() => '<div class="bar"><i></i></div>').join("");
   const barEls = $$(".bar", bars);
-  let idx = 0, timer = null, started = 0, remaining = DUR, paused = false;
+  const durOf = i => +(slides[i].dataset.dur || 7000);
+  barEls.forEach((b, i) => { b.firstElementChild.style.animationDuration = durOf(i) + "ms"; });
+  let idx = 0, timer = null, started = 0, remaining = 0, paused = false;
 
   function show(i) {
     idx = Math.max(0, Math.min(slides.length - 1, i));
@@ -425,92 +573,99 @@ const CONFIG = {
     barEls.forEach((b, n) => {
       b.classList.remove("active", "done");
       const fill = b.firstElementChild;
-      fill.style.animation = "none"; void fill.offsetWidth; fill.style.animation = "";
+      fill.style.animationName = "none"; void fill.offsetWidth; fill.style.animationName = "";
       if (n < idx) b.classList.add("done");
       if (n === idx) b.classList.add("active");
     });
     $("#fhint").hidden = idx !== 0;
-    remaining = DUR;
+    $("#copied").textContent = "";
+    remaining = durOf(idx);
     if (!paused) schedule();
   }
   function schedule() {
     clearTimeout(timer);
     started = Date.now();
-    if (idx < slides.length - 1) timer = setTimeout(() => show(idx + 1), remaining);
-    else timer = setTimeout(() => barEls[idx].classList.replace("active", "done"), remaining);
+    timer = setTimeout(() => {
+      if (idx < slides.length - 1) show(idx + 1);
+      else barEls[idx].classList.replace("active", "done");
+    }, remaining);
+  }
+  function setPauseIcon() {
+    $("#pauseBtn").textContent = paused ? "▶" : "❚❚";
+    $("#pauseBtn").setAttribute("aria-label", paused ? "Reproducir" : "Pausar");
+    root.classList.toggle("paused", paused);
   }
   function pause() {
     if (paused) return;
-    paused = true; root.classList.add("paused");
-    clearTimeout(timer); remaining -= Date.now() - started;
-    $("#pauseBtn").textContent = "▶"; $("#pauseBtn").setAttribute("aria-label", "Reproducir");
+    paused = true; clearTimeout(timer); remaining -= Date.now() - started; setPauseIcon();
   }
   function resume() {
     if (!paused) return;
-    paused = false; root.classList.remove("paused");
-    $("#pauseBtn").textContent = "❚❚"; $("#pauseBtn").setAttribute("aria-label", "Pausar");
-    schedule();
+    paused = false; setPauseIcon(); schedule();
   }
+  function go(n) { paused = false; setPauseIcon(); show(n); }
 
-  // hold to pause, tap to navigate
-  let holdTimer = null, held = false;
+  // copiar datos bancarios
+  $("#copyBank").addEventListener("click", async () => {
+    pause();
+    const dl = $("#bankData");
+    const text = $$("dt", dl).map(dt => dt.textContent + ": " + dt.nextElementSibling.textContent).join("\n");
+    try {
+      await navigator.clipboard.writeText(text);
+      $("#copied").textContent = "¡Datos copiados! Muchas gracias 🤍";
+    } catch {
+      const r = document.createRange(); r.selectNodeContents(dl);
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      $("#copied").textContent = "Datos seleccionados: mantén presionado para copiarlos.";
+    }
+  });
+
+  // tocar = navegar · mantener presionado = pausa · deslizar = cambiar
+  let holdTimer = null, held = false, sx = null;
   function bindTap(el, dir) {
-    el.addEventListener("pointerdown", () => {
-      held = false;
-      holdTimer = setTimeout(() => { held = true; pause(); }, 220);
+    el.addEventListener("pointerdown", e => {
+      held = false; sx = e.clientX;
+      holdTimer = setTimeout(() => { held = true; pause(); }, 250);
     });
-    el.addEventListener("pointerup", () => {
+    el.addEventListener("pointerup", e => {
       clearTimeout(holdTimer);
-      if (held) { resume(); return; }
-      const wasPaused = paused;
-      paused = false; root.classList.remove("paused");
-      show(idx + dir);
-      if (wasPaused) pause();
+      const dx = sx == null ? 0 : e.clientX - sx; sx = null;
+      if (held) { held = false; resume(); return; }
+      go(idx + (Math.abs(dx) > 50 ? (dx < 0 ? 1 : -1) : dir));
     });
-    el.addEventListener("pointerleave", () => { clearTimeout(holdTimer); if (held) { held = false; resume(); } });
+    el.addEventListener("pointercancel", () => { clearTimeout(holdTimer); if (held) { held = false; resume(); } });
   }
   bindTap($("#tapNext"), 1);
   bindTap($("#tapPrev"), -1);
 
   $("#pauseBtn").addEventListener("click", () => paused ? resume() : pause());
-  $("#replay").addEventListener("click", () => show(0));
+  $("#replay").addEventListener("click", () => go(0));
   document.addEventListener("keydown", e => {
-    if (e.key === "ArrowRight") show(idx + 1);
-    else if (e.key === "ArrowLeft") show(idx - 1);
-    else if (e.key === " ") { e.preventDefault(); paused ? resume() : pause(); }
-  });
-  // swipe
-  let sx = null;
-  root.addEventListener("touchstart", e => { sx = e.touches[0].clientX; }, { passive: true });
-  root.addEventListener("touchend", e => {
-    if (sx == null) return;
-    const dx = e.changedTouches[0].clientX - sx; sx = null;
-    if (Math.abs(dx) > 60) show(idx + (dx < 0 ? 1 : -1));
+    if (e.key === "ArrowRight") go(idx + 1);
+    else if (e.key === "ArrowLeft") go(idx - 1);
+    else if (e.key === " " && e.target === document.body) { e.preventDefault(); paused ? resume() : pause(); }
   });
   document.addEventListener("visibilitychange", () => document.hidden ? pause() : resume());
 
   show(0);
 
-  // falling petals
+  // pétalos
   const cv = $("#petals"), ctx = cv.getContext("2d");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let W, H, petals = [];
+  let W = 0, H = 0;
   function size() {
     const r = cv.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
     W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   size(); addEventListener("resize", size);
-  const colors = ["#e7c4bd", "#d4a19b", "#f3ebdf", "#d9b878"];
-  for (let i = 0; i < (reduce ? 0 : 22); i++) petals.push(newPetal(true));
-  function newPetal(anywhere) {
-    return {
-      x: Math.random() * W, y: anywhere ? Math.random() * H : -20,
-      r: 4 + Math.random() * 6, vy: .25 + Math.random() * .55, sway: Math.random() * 6.28,
-      rot: Math.random() * 6.28, vr: (Math.random() - .5) * .03,
-      c: colors[i4()], a: .35 + Math.random() * .45
-    };
-  }
-  function i4() { return Math.floor(Math.random() * 4); }
+  const colors = ["#ffffff", "#ecd6cc", "#b3c29a", "#dccb97"];
+  const newPetal = anywhere => ({
+    x: Math.random() * W, y: anywhere ? Math.random() * H : -20,
+    r: 4 + Math.random() * 6, vy: .25 + Math.random() * .5, sway: Math.random() * 6.28,
+    rot: Math.random() * 6.28, vr: (Math.random() - .5) * .03,
+    c: colors[Math.floor(Math.random() * colors.length)], a: .5 + Math.random() * .45
+  });
+  const petals = Array.from({ length: reduce ? 0 : 20 }, () => newPetal(true));
   function frame() {
     ctx.clearRect(0, 0, W, H);
     for (const p of petals) {
@@ -518,6 +673,7 @@ const CONFIG = {
       if (p.y > H + 20) Object.assign(p, newPetal(false));
       ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
       ctx.globalAlpha = p.a; ctx.fillStyle = p.c;
+      ctx.shadowColor = "rgba(59,70,49,.18)"; ctx.shadowBlur = 2;
       ctx.beginPath(); ctx.ellipse(0, 0, p.r, p.r * .55, 0, 0, Math.PI * 2); ctx.fill();
       ctx.restore();
     }
