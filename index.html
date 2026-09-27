@@ -127,11 +127,15 @@
   .d5 { animation-delay: 1.8s !important; }
   .d6 { animation-delay: 2.4s !important; }
   @keyframes rise { from { opacity: 0; transform: translateY(16px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+  .slide.on .script.in, .slide.on .card.in { animation-name: rise-soft; }
+  @keyframes rise-soft { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
   .eyebrow { font-family: var(--caps); font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin: 0; text-wrap: balance; line-height: 1.6; }
-  .eyebrow + .script { margin-top: 10px; }
-  .script + .body { margin-top: 12px; }
-  .script { font-family: var(--script); font-weight: 400; color: var(--deep); line-height: 1.05; margin: 0; }
+  .eyebrow + .script { margin-top: 0; }
+  .script + .body { margin-top: 2px; }
+  /* padding: los trazos decorativos de Parisienne se salen de la caja del texto y
+     Safari (iOS) los recorta durante la animación si no quedan dentro */
+  .script { font-family: var(--script); font-weight: 400; color: var(--deep); line-height: 1.05; margin: 0; padding: .15em .35em; }
   .body { font-size: 20px; line-height: 1.45; max-width: 30ch; margin: 0; text-wrap: balance; }
   .rule { width: 70px; height: 1px; border: 0; margin: 16px auto; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
   .stack { display: flex; flex-direction: column; align-items: center; gap: 12px; }
@@ -271,7 +275,7 @@
     background: rgba(253,252,246,.75); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
     box-shadow: 0 10px 30px rgba(59,70,49,.1);
   }
-  .card h3 { font-family: var(--script); font-weight: 400; font-size: 36px; margin: 0 0 6px; color: var(--moss); line-height: 1.1; }
+  .card h3 { font-family: var(--script); font-weight: 400; font-size: 36px; margin: 0 0 6px; padding: .1em .3em; color: var(--moss); line-height: 1.1; }
   .time { font-family: var(--serif); font-weight: 600; letter-spacing: .12em; font-size: 19px; }
   .card p { margin: 8px 0 14px; font-size: 20px; line-height: 1.35; }
   .card p small { display: block; font-size: 16px; color: var(--muted); }
