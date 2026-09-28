@@ -231,7 +231,9 @@
 
   /* ---------- película ---------- */
   .video-slide { padding: 0; background: #f6f1e4; }
-  .video-slide video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .video-slide.on { z-index: 5; }
+  /* la película se ve completa (sin recortes) en cualquier proporción de pantalla */
+  .video-slide video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: 50% 50%; background: #f6f1e4; }
   .on-video .head { opacity: 0; pointer-events: none; transition: opacity .4s; }
   .on-video .bar { background: rgba(59,70,49,.25); }
   .sound-btn {
