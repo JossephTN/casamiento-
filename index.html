@@ -32,7 +32,7 @@
     --serif: "Cormorant Garamond", "Garamond", Georgia, serif;
   }
   * { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; }
+  html, body { height: 100%; height: 100dvh; margin: 0; }
   body {
     background: #d6ddc6;
     color: var(--deep);
@@ -52,6 +52,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    height: 100dvh;
     overflow: hidden;
     background:
       radial-gradient(90% 55% at 50% 0%, #fbfaf3 0%, transparent 70%),
@@ -61,6 +62,7 @@
   @media (min-width: 560px) {
     .stories {
       height: min(92vh, 860px);
+      height: min(92dvh, 860px);
       width: auto;
       aspect-ratio: 9 / 16;
       border-radius: 18px;
@@ -150,7 +152,7 @@
   }
 
   /* ---------- 1 · sobre ---------- */
-  .envelope-wrap { position: relative; margin: 70px 0 34px; }
+  .envelope-wrap { position: relative; margin: 104px 0 30px; } /* espacio para la tarjeta que sube */
   .envelope { position: relative; width: 264px; height: 178px; perspective: 900px; }
   .envelope::after {
     content: ""; position: absolute; left: 6%; right: 6%; bottom: -18px; height: 20px;
@@ -223,6 +225,9 @@
   @keyframes flap { 0% { transform: rotateX(0); z-index: 4; } 49% { z-index: 4; } 50% { z-index: 0; } 100% { transform: rotateX(180deg); z-index: 0; } }
   @keyframes cardup { to { transform: translateY(-100px); } }
   .hint { font-family: var(--caps); font-size: 11px; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; margin: 0; }
+
+  /* ---------- ajuste a pantallas bajas ---------- */
+  .fit { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; transform-origin: 50% 50%; }
 
   /* ---------- película ---------- */
   .video-slide { padding: 0; background: #f6f1e4; }
@@ -327,7 +332,6 @@
 
   @media (max-height: 700px) {
     .slide { padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
-    .envelope-wrap { margin-top: 56px; }
     .bigdate b { font-size: 76px; }
   }
 
@@ -477,7 +481,7 @@
     <div class="swatches in d2">
       <span style="background:#c3cfae"></span>
       <span style="background:#e6cfc4"></span>
-      <span style="background:#e9dcc0"></span>
+      <span style="background:#d9a58c"></span>
       <span style="background:#b99372"></span>
       <span style="background:#8c6d55"></span>
     </div>
@@ -598,6 +602,28 @@
     units.s.textContent = String(s).padStart(2, "0");
   }
   tick(); setInterval(tick, 1000);
+
+  // envuelve el contenido de cada historia para poder escalarlo si no cabe (iPhone pequeños, Safari con barras)
+  slides.forEach(s => {
+    if (s.classList.contains('video-slide')) return;
+    const w = document.createElement('div'); w.className = 'fit';
+    while (s.firstChild) w.appendChild(s.firstChild);
+    s.appendChild(w);
+  });
+  function fitSlide(s) {
+    const w = s.querySelector(':scope > .fit'); if (!w) return;
+    w.style.transform = '';
+    const cs = getComputedStyle(s);
+    const avail = s.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    const need = w.scrollHeight;
+    const k = need > avail ? Math.max(0.6, avail / need) : 1;
+    if (k < 1) w.style.transform = `scale(${k})`;
+  }
+  const fitAll = () => slides.forEach(fitSlide);
+  addEventListener('resize', fitAll);
+  if (window.visualViewport) visualViewport.addEventListener('resize', fitAll);
+  document.fonts && document.fonts.ready.then(fitAll);
+  fitAll();
 
   // película: se reproduce con sonido cuando su historia está activa
   const film = $("#film"), soundBtn = $("#soundBtn");
