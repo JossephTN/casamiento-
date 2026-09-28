@@ -224,6 +224,17 @@
   @keyframes cardup { to { transform: translateY(-100px); } }
   .hint { font-family: var(--caps); font-size: 11px; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; margin: 0; }
 
+  /* ---------- película ---------- */
+  .video-slide { padding: 0; background: #f6f1e4; }
+  .video-slide video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .on-video .head { opacity: 0; pointer-events: none; transition: opacity .4s; }
+  .on-video .bar { background: rgba(59,70,49,.25); }
+  .sound-btn {
+    position: absolute; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%);
+    font-family: var(--caps); font-size: 13px; letter-spacing: .12em; color: #fdfcf6; background: rgba(59,70,49,.78);
+    border: 0; border-radius: 999px; padding: 12px 20px; cursor: pointer; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  }
+
   /* ---------- 2 · nombres ---------- */
   .names { font-size: clamp(60px, 17vw, 84px); }
   .names .amp { display: block; font-size: .5em; color: var(--gold); margin: -2px 0; }
@@ -386,6 +397,15 @@
     </div>
   </section>
 
+  <!-- 2 · Película -->
+  <section class="slide video-slide" aria-label="Nuestra historia" data-dur="39200">
+    <video id="film" poster="media/nuestra-historia-poster.jpg" playsinline preload="auto">
+      <source src="media/nuestra-historia.mp4" type="video/mp4">
+      <source src="media/nuestra-historia.webm" type="video/webm">
+    </video>
+    <button type="button" class="sound-btn" id="soundBtn" hidden>🔊 Activar sonido</button>
+  </section>
+
   <!-- 2 · Nombres -->
   <section class="slide" aria-label="Los novios">
     <svg class="rings in" viewBox="0 0 124 72" aria-hidden="true">
@@ -473,7 +493,7 @@
   <section class="slide" aria-label="Regalos" data-dur="15000">
     <p class="eyebrow in">Regalos</p>
     <h2 class="script in d1" style="font-size:40px">Luna de miel en familia</h2>
-    <p class="body in d2" style="font-size:17px; max-width:32ch; margin:8px 0 14px">Gracias a Dios ya tenemos nuestra casita con todo lo necesario, así que no recibiremos regalos físicos. Si quieres bendecirnos, estamos juntando para nuestra luna de miel en familia.</p>
+    <p class="body in d2" style="font-size:17px; max-width:32ch; margin:8px 0 14px">Tu presencia es el regalo más lindo 🤍 Dios ya nos bendijo con nuestra casita, así que si quieres hacernos un regalo, nos encantaría recibirlo como un aporte para nuestra luna de miel en familia.</p>
     <div class="card bank in d3 selectable">
       <dl id="bankData">
         <dt>Nombre</dt><dd>Bárbara Collado Araya</dd>
@@ -579,6 +599,23 @@
   }
   tick(); setInterval(tick, 1000);
 
+  // película: se reproduce con sonido cuando su historia está activa
+  const film = $("#film"), soundBtn = $("#soundBtn");
+  function playFilm() {
+    film.muted = false;
+    film.play().then(() => { soundBtn.hidden = true; }).catch(() => {
+      // el navegador bloqueó el sonido: se reproduce en silencio y se ofrece activarlo
+      film.muted = true; film.play().catch(() => {}); soundBtn.hidden = false;
+    });
+  }
+  function syncFilm() {
+    const active = slides[idx].contains(film);
+    root.classList.toggle("on-video", active);
+    if (active) { film.currentTime = 0; if (!paused) playFilm(); }
+    else { film.pause(); soundBtn.hidden = true; }
+  }
+  soundBtn.addEventListener("click", () => { film.muted = false; film.play().catch(() => {}); soundBtn.hidden = true; });
+
   // motor de historias
   const bars = $("#bars");
   bars.innerHTML = slides.map(() => '<div class="bar"><i></i></div>').join("");
@@ -598,6 +635,7 @@
       if (n === idx) b.classList.add("active");
     });
     $("#fhint").hidden = idx !== 0;
+    syncFilm();
     $("#copied").textContent = "";
     remaining = durOf(idx);
     if (!paused) schedule();
@@ -619,10 +657,12 @@
   function pause() {
     if (paused) return;
     paused = true; clearTimeout(timer); remaining -= Date.now() - started; setPauseIcon();
+    film.pause();
   }
   function resume() {
     if (!paused) return;
     paused = false; setPauseIcon(); schedule();
+    if (slides[idx].contains(film)) playFilm();
   }
   function go(n) { paused = false; userPaused = false; setPauseIcon(); show(n); }
 

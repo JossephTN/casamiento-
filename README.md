@@ -6,13 +6,14 @@ Sábado 7 de noviembre de 2026 · 13:00 a 19:00 h · Centro de Eventos Inti Puka
 ## Historias
 
 1. Sobre con sello de cera que se abre
+1. Película animada "Nuestra historia" (39 s, con música)
 2. ¡Nos casamos!
 3. Cordón de tres dobleces (Eclesiastés 4:12)
 4. Guarda la fecha
 5. Cuenta regresiva
 6. Dónde y cuándo (link a Google Maps)
 7. Dress code semi formal + piscina
-8. Regalos: luna de miel en familia (datos bancarios con botón para copiar)
+8. Regalos: aporte para la luna de miel en familia (datos bancarios con botón para copiar)
 9. Confirmar asistencia por WhatsApp
 
 ## Cómo usarla
